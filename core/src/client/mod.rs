@@ -202,6 +202,14 @@ impl<Notif> Subscription<Notif> {
 	) -> Self {
 		Self { to_back, notifs_rx, kind, marker: PhantomData }
 	}
+	/// get the subscription id
+	pub fn get_subscription_id(&self) -> Option<SubscriptionId<'static>> {
+		if let SubscriptionKind::Subscription(id) = &self.kind {
+			Some(id.clone())
+		} else {
+			None
+		}
+	}
 }
 
 /// Batch request message.
